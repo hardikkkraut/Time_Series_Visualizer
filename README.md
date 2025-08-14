@@ -1,38 +1,53 @@
-﻿# ðŸ“ˆ Time Series Visualizer
+# Time Series Visualizer
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![GitHub stars](https://img.shields.io/github/stars/hardikkkraut/Time_Series_Visualizer?style=social)
-![License](https://img.shields.io/github/license/hardikkkraut/Time_Series_Visualizer)
+## Overview
+This project explores and visualizes temporal patterns in a univariate time series. It covers cleaning and resampling, rolling statistics, seasonal decomposition, and clear, publication-style plots for trend, seasonality, and anomalies.
 
-A Python project to visualize time series data using Matplotlib and Pandas.  
-This project loads dataset, cleans it, and creates line plots, bar plots, and box plots for trend analysis.
+## Dataset
+# - **Location**: data/ folder in this repository
+# - **Format**: CSV with a datetime column and a numeric value column
+# - **Notes**: Ensure the datetime column is parsed with the correct timezone/format
 
-![Preview](assets/preview.png)
+## Implementation
+# 1. Data loading with parse_dates and index set to the datetime column.
+# 2. Cleaning: handle duplicates, sort by date, drop impossible or extreme outliers via IQR/z-score.
+# 3. Resampling to daily/monthly frequency and computing rolling mean/median for smoothing.
+# 4. Decomposition using statsmodels.tsa.seasonal_decompose to separate trend/seasonality/residuals.
+# 5. Visualization: line plots for raw vs. smoothed series, monthly bar charts, yearly box plots.
+# 6. Exporting figures to eports/figures/ and saving tidy intermediate CSVs to rtifacts/.
 
-## ðŸ“Œ Features
-- Line plot for time trends
-- Bar plot for monthly averages
-- Box plot for yearly trends
-- Data cleaning and preprocessing
+## Tech Stack
+# Python, Pandas, NumPy, Matplotlib, Seaborn, Statsmodels
 
-## ðŸ› ï¸ Tech Stack
-- Python
-- Pandas
-- Matplotlib
-- Seaborn
+## Results
+# - Cleaned series with clearly identified long-term trend and seasonal behavior.
+# - Diagnostic plots (ACF/PACF optional) to inform downstream modeling.
+# - Reproducible pipeline with saved artifacts for further forecasting tasks.
 
-## ðŸš€ Installation
-`
-pip install -r requirements.txt
-`
+## How to Run
+   python -m venv .venv
+   .venv\Scripts\activate    # Windows
+   pip install -r requirements.txt
+   python src/visualize.py      # generates figures into reports/figures
 
-## â–¶ï¸ Usage
-`
-python main.py
-`
+## Project Structure
+# - data/                # raw or preprocessed CSVs
+# - src/                 # data loading, cleaning, visualization scripts
+# - artifacts/           # intermediate cleaned/resampled CSVs
+# - reports/figures/     # exported PNG charts
+# - requirements.txt
+# - README.md
 
-## ðŸ“Š Example Output
-(Add your sample chart here)
+## Reproducibility
+# - Python 3.9+ recommended
+# - Install exact package versions via equirements.txt
+# - Set a global random seed where applicable for deterministic splits
 
-## ðŸ“œ License
-This project is licensed under the MIT License.
+## Future Improvements
+# - Add forecasting models (ARIMA/Prophet/ETS) with cross-validation.
+# - Automate report generation (Jupyter/nbconvert or Markdown reports).
+# - Add anomaly detection (STL+IQR or Twitter/ADTK style detectors).
+
+# ---
+Author: Hardik Raut • GitHub: https://github.com/hardikkkraut
+
